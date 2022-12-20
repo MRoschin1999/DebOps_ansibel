@@ -1,0 +1,7 @@
+---
+- hosts: app
+  remote_user: root
+
+  tasks:
+  - name: ensure apache
+    yum: name=httpd state=latest
