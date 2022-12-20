@@ -5,3 +5,16 @@
   tasks:
   - name: ensure apache
     yum: name=httpd state=latest
+  - name: start httpd
+      service:
+          name: httpd
+          state: started
+  - name: delete old index.html
+      file:
+        state: absent
+        path: /usr/share/httpd/noindex/index.html
+  - name: copy the index.html file
+      copy:
+        src: ~/ansible/index.html
+        dest: /usr/share/httpd/noindex/index.html
+      become: yes
